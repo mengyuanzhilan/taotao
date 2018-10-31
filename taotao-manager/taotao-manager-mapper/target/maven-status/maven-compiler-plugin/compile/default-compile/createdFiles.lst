@@ -1,0 +1,12 @@
+cn\zmt\mapper\TbItemDescMapper.class
+cn\zmt\mapper\TbItemParamMapper.class
+cn\zmt\mapper\TbOrderShippingMapper.class
+cn\zmt\mapper\TbItemCatMapper.class
+cn\zmt\mapper\TbContentCategoryMapper.class
+cn\zmt\mapper\TbOrderMapper.class
+cn\zmt\mapper\TbItemParamItemMapper.class
+cn\zmt\mapper\TbOrderItemMapper.class
+cn\zmt\mapper\TbUserMapper.class
+cn\zmt\App.class
+cn\zmt\mapper\TbContentMapper.class
+cn\zmt\mapper\TbItemMapper.class
