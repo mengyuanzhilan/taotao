@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 /**
  * @author zmt
  * @date 2018/10/27 - 23:09
@@ -23,4 +25,5 @@ public class ItemController {
     public TbItem getItemById(@PathVariable Long itemId){
         return itemService.getItemById(itemId);
     }
+
 }

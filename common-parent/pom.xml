@@ -182,8 +182,27 @@
         <artifactId>solr-solrj</artifactId>
         <version>${solrj.version}</version>
       </dependency>
+      <!-- spring单元测试模块 -->
 
-
+      <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>4.3.7.RELEASE</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- 自动生成get set -->
+      <!-- https://mvnrepository.com/artifact/io.freefair.gradle/lombok-plugin -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.16.10</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.geronimo.bundles</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.6.8_2</version>
+      </dependency>
 
 
 
