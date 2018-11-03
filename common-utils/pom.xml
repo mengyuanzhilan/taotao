@@ -76,7 +76,16 @@
             <version>2.0</version>
             <scope>provided</scope>
         </dependency>
-
+        <!-- 自动生成get set -->
+        <!-- https://mvnrepository.com/artifact/io.freefair.gradle/lombok-plugin -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.bundles</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
 
     </dependencies>
 

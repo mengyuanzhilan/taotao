@@ -1,5 +1,6 @@
 package cn.zmt.controller;
 
+import cn.zmt.EUDataGridResult;
 import cn.zmt.pojo.TbItem;
 import cn.zmt.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,19 @@ public class ItemController {
     public TbItem getItemById(@PathVariable Long itemId){
         return itemService.getItemById(itemId);
     }
+
+    /**
+     * 获取item列表
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/list")
+    @ResponseBody
+    public EUDataGridResult getItemList(Integer page,Integer rows){
+        EUDataGridResult result = itemService.getItemList(page,rows);
+        return result;
+    }
+
 
 }
