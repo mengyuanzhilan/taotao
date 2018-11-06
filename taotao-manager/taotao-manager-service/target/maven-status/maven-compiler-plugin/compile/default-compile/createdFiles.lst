@@ -1,5 +1,6 @@
 cn\zmt\service\ItemCatService.class
+cn\zmt\service\PictureService.class
 cn\zmt\service\impl\ItemServiceImpl.class
 cn\zmt\service\ItemService.class
 cn\zmt\service\impl\ItemCatServiceImpl.class
-cn\zmt\App.class
+cn\zmt\service\impl\PictureServiceImpl.class

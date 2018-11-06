@@ -95,10 +95,11 @@ public class FtpUtil {
      * @param ftpPath  FTP服务器中文件所在路径 格式： ftptest/aa
      * @param fileName ftp文件名称
      * @param input 文件流
+     * @param filePath FTP服务器文件存放路径。例如分日期存放：/2015/01/01。文件的路径为basePath+filePath
      * @return 成功返回true，否则返回false
      */
     public static boolean uploadFile(String ftpHost, String ftpUserName,
-                                     String ftpPassword, int ftpPort, String ftpPath,
+                                     String ftpPassword, int ftpPort, String ftpPath,String filePath,
                                      String fileName,InputStream input) {
         boolean success = false;
         FTPClient ftpClient = null;
@@ -110,10 +111,27 @@ public class FtpUtil {
                 ftpClient.disconnect();
                 return success;
             }
+            //切换到上传目录
+            if (!ftpClient.changeWorkingDirectory(ftpPath+filePath)) {
+                //如果目录不存在创建目录
+                String[] dirs = filePath.split("/");
+                String tempPath = ftpPath;
+                for (String dir : dirs) {
+                    if (null == dir || "".equals(dir)) continue;
+                    tempPath += "/" + dir;
+                    if (!ftpClient.changeWorkingDirectory(tempPath)) {
+                        if (!ftpClient.makeDirectory(tempPath)) {
+                            return success;
+                        } else {
+                            ftpClient.changeWorkingDirectory(tempPath);
+                        }
+                    }
+                }
+            }
             ftpClient.setControlEncoding("UTF-8"); // 中文支持
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
             ftpClient.enterLocalPassiveMode();
-            ftpClient.changeWorkingDirectory(ftpPath);
+            ftpClient.changeWorkingDirectory(ftpPath+filePath);
 
             ftpClient.storeFile(fileName, input);
 
@@ -127,6 +145,7 @@ public class FtpUtil {
                 try {
                     ftpClient.disconnect();
                 } catch (IOException ioe) {
+                    ioe.printStackTrace();
                 }
             }
         }

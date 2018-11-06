@@ -1,6 +1,8 @@
 package cn.zmt.service.impl;
 
 import cn.zmt.EUDataGridResult;
+import cn.zmt.IDUtils;
+import cn.zmt.TaotaoResult;
 import cn.zmt.mapper.TbItemMapper;
 import cn.zmt.pojo.TbItem;
 import cn.zmt.pojo.TbItemExample;
@@ -10,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,5 +49,25 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public TbItem getItemById(long itemId) {
         return tbItemMapper.selectByPrimaryKey(itemId);
+    }
+
+    /**
+     * 创建商品
+     * @param item
+     * @return
+     */
+    @Override
+    public TaotaoResult createItem(TbItem item) {
+        //item补全
+        //生成商品ID
+        Long itemId = IDUtils.genItemId();
+        //商品的状态,1 正常, 2 下架,3 删除
+        item.setStatus((byte)1);
+        item.setCreated(new Date());
+        item.setUpdated(new Date());
+        item.setId(itemId);
+        //插入到数据库
+        tbItemMapper.insert(item);
+        return TaotaoResult.ok();
     }
 }

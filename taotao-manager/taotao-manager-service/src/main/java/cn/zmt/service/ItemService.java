@@ -1,6 +1,7 @@
 package cn.zmt.service;
 
 import cn.zmt.EUDataGridResult;
+import cn.zmt.TaotaoResult;
 import cn.zmt.pojo.TbItem;
 import org.springframework.stereotype.Service;
 
@@ -19,4 +20,11 @@ public interface ItemService {
      * @return
      */
     EUDataGridResult getItemList(int page,int rows);
+
+    /**
+     *创建商品
+     * @param item
+     * @return
+     */
+    TaotaoResult createItem(TbItem item);
 }

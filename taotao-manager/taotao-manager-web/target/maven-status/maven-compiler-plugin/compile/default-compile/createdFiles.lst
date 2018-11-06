@@ -1,3 +1,4 @@
 cn\zmt\controller\ItemController.class
 cn\zmt\controller\PageController.class
+cn\zmt\controller\PictureController.class
 cn\zmt\controller\ItemCatController.class

@@ -21,14 +21,15 @@ public class TestFtp {
      */
     @Test
     public void up(){
-        String ftpPath = "/images/";//ftp路径
-        String localPath = "i:/ailisha.jpg";//上传路径和文件名
-        String fileName = "ailisha.jpg";//上传后的文件名
+        String ftpPath = "/images";//ftp路径
+        String localPath = "h:/湖边小雨win7.jpg";//上传路径和文件名
+        String fileName = "湖边小雨win7.jpg";//上传后的文件名
+        String filePath = "/2018/11/06";
         try{
             FileInputStream in=new FileInputStream(new File(localPath));
-            boolean test = FtpUtil.uploadFile(ftpHost, ftpUserName, ftpPassword, ftpPort, ftpPath, fileName,in);
+            boolean test = FtpUtil.uploadFile(ftpHost, ftpUserName, ftpPassword, ftpPort, ftpPath,filePath, fileName,in);
             System.out.println(test);
-        } catch (FileNotFoundException e){
+        } catch (Exception e){
             e.printStackTrace();
             System.out.println(e);
         }

@@ -1,12 +1,14 @@
 package cn.zmt.controller;
 
 import cn.zmt.EUDataGridResult;
+import cn.zmt.TaotaoResult;
 import cn.zmt.pojo.TbItem;
 import cn.zmt.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
@@ -40,5 +42,9 @@ public class ItemController {
         return result;
     }
 
-
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @ResponseBody
+    public TaotaoResult createItem(TbItem item){
+        return itemService.createItem(item);
+    }
 }
