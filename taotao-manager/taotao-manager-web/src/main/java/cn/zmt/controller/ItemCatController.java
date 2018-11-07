@@ -24,6 +24,9 @@ public class ItemCatController {
     private ItemCatService itemCatService;
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
+    /**
+     * 查找节点
+     */
     @RequestMapping("/list")
     @ResponseBody
     //如果id为null是使用默认值，也就是parentid为0的分类列表

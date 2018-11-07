@@ -71,6 +71,11 @@
   <sql id="Base_Column_List">
     id, item_cat_id, created, updated
   </sql>
+
+  <sql id="Base_Column_ListWithCatName">
+    p.id, p.item_cat_id, p.created, p.updated,c.name itemCatName
+  </sql>
+
   <sql id="Blob_Column_List">
     param_data
   </sql>
@@ -90,6 +95,25 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="selectByExampleWithBLOBsWithCatName" parameterType="cn.zmt.pojo.TbItemParamExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_ListWithCatName" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_item_param p left join tb_item_cat c on c.id=p.item_cat_id
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
   <select id="selectByExample" parameterType="cn.zmt.pojo.TbItemParamExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

@@ -31,8 +31,8 @@ public class ItemController {
 
     /**
      * 获取item列表
-     * @param page
-     * @param rows
+     * @param page 当前页
+     * @param rows 显示多少条数据
      * @return
      */
     @RequestMapping("/list")
@@ -42,9 +42,16 @@ public class ItemController {
         return result;
     }
 
+    /**
+     * 添加商品
+     * @param item 商品信息
+     * @param desc 商品描述（富文本编辑器的值）
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
-    public TaotaoResult createItem(TbItem item){
-        return itemService.createItem(item);
+    public TaotaoResult createItem(TbItem item,String desc,String itemParams)throws Exception{
+        return itemService.createItem(item,desc,itemParams);
     }
 }

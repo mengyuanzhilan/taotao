@@ -19,6 +19,11 @@ public class PictureController {
     @Autowired
     private PictureService pictureService;
 
+    /**
+     * 上传图片
+     * @param uploadFile
+     * @return
+     */
     @RequestMapping("/upload")
     @ResponseBody
     public Map uploda(MultipartFile uploadFile){

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
+ * 商品分类
  * @author 赵铭涛
  * @creation time 2018/11/3 - 9:35
  */

@@ -1,4 +1,5 @@
 cn\zmt\IDUtils.class
 cn\zmt\EUDataGridResult.class
 cn\zmt\FtpUtil.class
+cn\zmt\JsonUtils.class
 cn\zmt\TaotaoResult.class
