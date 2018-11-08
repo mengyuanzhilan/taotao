@@ -6,10 +6,7 @@ import cn.zmt.TaotaoResult;
 import cn.zmt.mapper.TbItemDescMapper;
 import cn.zmt.mapper.TbItemMapper;
 import cn.zmt.mapper.TbItemParamItemMapper;
-import cn.zmt.pojo.TbItem;
-import cn.zmt.pojo.TbItemDesc;
-import cn.zmt.pojo.TbItemExample;
-import cn.zmt.pojo.TbItemParamItem;
+import cn.zmt.pojo.*;
 import cn.zmt.service.ItemService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -31,7 +28,7 @@ public class ItemServiceImpl implements ItemService {
     private TbItemMapper tbItemMapper;
 
     @Autowired
-    private TbItemDescMapper tbItemDesc;
+    private TbItemDescMapper tbItemDescMapper;
 
     @Autowired
     private TbItemParamItemMapper tbItemParamItemMapper;
@@ -104,6 +101,7 @@ public class ItemServiceImpl implements ItemService {
         itemDesc.setItemDesc(desc);
         itemDesc.setCreated(new Date());
         itemDesc.setUpdated(new Date());
+        tbItemDescMapper.insert(itemDesc);
         return TaotaoResult.ok();
     }
 
@@ -124,4 +122,141 @@ public class ItemServiceImpl implements ItemService {
         tbItemParamItemMapper.insert(itemParamItem);
         return TaotaoResult.ok();
     }
+    /**
+     * 修改商品信息
+     * @param item 商品信息
+     * @param desc 商品描述
+     * @param itemParam 商品参数
+     * @return
+     * @throws Exception
+     */
+    public TaotaoResult updateItem(TbItem item,String desc,String itemParam) throws Exception {
+        //修改时间
+        Long itemId = item.getId();
+        item.setUpdated(new Date());
+        tbItemMapper.updateByPrimaryKeySelective(item);
+        TaotaoResult result = updateItemDesc(itemId,desc);
+        if(result.getStatus()!=200){
+            throw  new Exception();
+        }
+        result = updateItemParamItem(itemId,itemParam);
+        if(result.getStatus()!=200){
+            throw  new Exception();
+        }
+        return TaotaoResult.ok();
+    }
+
+    /**
+     * 修改商品描述
+     * @param itemId
+     * @param desc
+     * @return
+     */
+    private TaotaoResult updateItemDesc(Long itemId,String desc) throws Exception {
+        //先确认是否有这条数据
+        TbItemDesc itemDesc = tbItemDescMapper.selectByPrimaryKey(itemId);
+        if(itemDesc==null){
+            insertItemDesc(itemId,desc);
+        }else{
+            itemDesc = new TbItemDesc();
+            //补全pojo
+            itemDesc.setItemId(itemId);
+            itemDesc.setUpdated(new Date());
+            itemDesc.setItemDesc(desc);
+            tbItemDescMapper.updateByPrimaryKeySelective(itemDesc);
+        }
+        return TaotaoResult.ok();
+    }
+
+    /**
+     * 修改参数
+     * @param itemId
+     * @param itemParam
+     * @return
+     */
+    private TaotaoResult updateItemParamItem(Long itemId,String itemParam){
+        //补全pojo
+        TbItemParamItem itemParamItem = new TbItemParamItem();
+        itemParamItem.setUpdated(new Date());
+        itemParamItem.setParamData(itemParam);
+        //添加条件
+        TbItemParamItemExample example = new TbItemParamItemExample();
+        TbItemParamItemExample.Criteria criteria = example.createCriteria();
+        criteria.andItemIdEqualTo(itemId);
+        //先确认是否有这条数据
+        List<TbItemParamItem> list = tbItemParamItemMapper.selectByExampleWithBLOBs(example);
+        if(list==null||list.size()==0){//如果没有就新添加一条
+            insertItemParamItem(itemId,itemParam);
+        }else{//如果有就修改
+            //提交修改
+            tbItemParamItemMapper.updateByExampleSelective(itemParamItem,example);
+        }
+        return TaotaoResult.ok();
+    }
+
+    /**
+     * 删除商品
+     * @param itemId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public TaotaoResult deleteItem(Long[] itemId) throws Exception {
+        for (Long id : itemId) {
+            TaotaoResult result = deleteItemDesc(id);
+            if(result.getStatus()!=200){
+                throw  new Exception();
+            }
+            result = deleteItemParamItem(id);
+            if(result.getStatus()!=200){
+                throw  new Exception();
+            }
+            tbItemMapper.deleteByPrimaryKey(id);
+        }
+        return TaotaoResult.ok();
+    }
+
+    /**
+     * 删除关联商品的描述
+     * @param itemId
+     * @return
+     */
+    private TaotaoResult deleteItemDesc(Long itemId){
+        tbItemDescMapper.deleteByPrimaryKey(itemId);
+        return TaotaoResult.ok();
+    }
+
+    /**
+     * 删除关联商品的参数
+     * @param itemId
+     * @return
+     */
+    private TaotaoResult deleteItemParamItem(Long itemId){
+        TbItemParamItemExample example = new TbItemParamItemExample();
+        TbItemParamItemExample.Criteria criteria = example.createCriteria();
+        criteria.andItemIdEqualTo(itemId);
+        tbItemParamItemMapper.deleteByExample(example);
+        return TaotaoResult.ok();
+    }
+
+    /**
+     * 下架商品
+     * @param ids
+     * @return
+     */
+    @Override
+    public TaotaoResult upOrDownItem(Long[] ids,Integer or) throws Exception {
+        TbItem item = new TbItem();
+        item.setStatus(Byte.parseByte(or+""));
+        int count = 0;
+        for (Long id : ids) {
+            item.setId(id);
+            count = tbItemMapper.updateByPrimaryKeySelective(item);
+            if(count==0){
+                throw new Exception();
+            }
+        }
+        return TaotaoResult.ok();
+    }
+
 }

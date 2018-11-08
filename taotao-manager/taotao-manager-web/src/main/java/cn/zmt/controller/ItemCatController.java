@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 商品分类节点
  * @author 赵铭涛
  * @creation time 2018/11/3 - 9:43
  */

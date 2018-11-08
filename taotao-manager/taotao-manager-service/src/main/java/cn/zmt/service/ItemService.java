@@ -28,4 +28,27 @@ public interface ItemService {
      */
     TaotaoResult createItem(TbItem item,String desc,String itemParam) throws Exception;
 
+    /**
+     * 修改商品
+     * @param item
+     * @param desc
+     * @param itemParam
+     * @return
+     */
+    TaotaoResult updateItem(TbItem item,String desc,String itemParam) throws Exception;
+
+    /**
+     * 删除商品
+     * @param itemId
+     * @return
+     * @throws Exception
+     */
+    TaotaoResult deleteItem(Long[] itemId)throws Exception;
+
+    /**
+     * 上下架商品
+     * @return
+     */
+    TaotaoResult upOrDownItem(Long[] ids,Integer or) throws Exception;
+
 }

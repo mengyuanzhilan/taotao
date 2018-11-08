@@ -1,6 +1,7 @@
 package cn.zmt.service.impl;
 
 import cn.zmt.JsonUtils;
+import cn.zmt.TaotaoResult;
 import cn.zmt.mapper.TbItemParamItemMapper;
 import cn.zmt.pojo.TbItemParamItem;
 import cn.zmt.pojo.TbItemParamItemExample;
@@ -61,5 +62,19 @@ public class ItemParamItemServiceImpl implements ItemParamItemService {
         sb.append("    </tbody>\n");
         sb.append("</table>");
         return sb.toString();
+    }
+
+    /**
+     * 通过id获取详情规格参数
+     * @param itemId
+     * @return
+     */
+    @Override
+    public TaotaoResult getItemParamByItemIdPojo(Long itemId) {
+        TbItemParamItemExample example = new TbItemParamItemExample();
+        TbItemParamItemExample.Criteria criteria = example.createCriteria();
+        criteria.andItemIdEqualTo(itemId);
+        List<TbItemParamItem> list = tbItemParamItemMapper.selectByExampleWithBLOBs(example);
+        return TaotaoResult.ok(list);
     }
 }

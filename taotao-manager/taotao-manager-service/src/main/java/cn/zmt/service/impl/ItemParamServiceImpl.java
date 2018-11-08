@@ -81,4 +81,19 @@ public class ItemParamServiceImpl implements ItemParamService {
         result.setRows(list);
         return result;
     }
+    /**
+     * 删除参数模板
+     * @param ids
+     * @return
+     */
+    public TaotaoResult deleteItemParam(Long[] ids) throws Exception {
+        int count = 0;
+        for (Long id : ids) {
+            count = tbItemParamMapper.deleteByPrimaryKey(id);
+            if(count==0){
+                throw new Exception();
+            }
+        }
+        return TaotaoResult.ok();
+    }
 }

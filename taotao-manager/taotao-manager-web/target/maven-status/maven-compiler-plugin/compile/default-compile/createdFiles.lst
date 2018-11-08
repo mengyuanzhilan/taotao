@@ -4,3 +4,4 @@ cn\zmt\controller\PictureController.class
 cn\zmt\controller\ItemParamControll.class
 cn\zmt\controller\ItemParamItemController.class
 cn\zmt\controller\ItemCatController.class
+cn\zmt\controller\ItemDescController.class

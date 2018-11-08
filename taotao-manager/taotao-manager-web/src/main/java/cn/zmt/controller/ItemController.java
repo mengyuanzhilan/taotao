@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 /**
+ * 商品
  * @author zmt
  * @date 2018/10/27 - 23:09
  */
@@ -53,5 +54,51 @@ public class ItemController {
     @ResponseBody
     public TaotaoResult createItem(TbItem item,String desc,String itemParams)throws Exception{
         return itemService.createItem(item,desc,itemParams);
+    }
+
+    /**
+     * 修改商品信息
+     * @param item 商品信息
+     * @param desc 商品描述
+     * @param itemParams 商品参数
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping("/update")
+    public TaotaoResult updateItem(TbItem item,String desc,String itemParams)throws Exception{
+        return itemService.updateItem(item,desc,itemParams);
+    }
+
+    /**
+     * 删除商品
+     * @param ids
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/delete")
+    public TaotaoResult deleteItem(Long[] ids)throws Exception{
+        return itemService.deleteItem(ids);
+    }
+
+    /**
+     * 下架商品
+     * @param ids
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/instock")
+    public TaotaoResult instockItem(Long[] ids)throws Exception{
+        return itemService.upOrDownItem(ids,2);
+    }
+    /**
+     * 上架商品
+     * @param ids
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/reshelf")
+    public TaotaoResult reshelfItem(Long[] ids)throws Exception{
+        return itemService.upOrDownItem(ids,1);
     }
 }

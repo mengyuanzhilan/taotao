@@ -25,10 +25,17 @@ public interface ItemParamService {
     TaotaoResult insertItemParam(TbItemParam itemParam);
 
     /**
-     * 分页获取列表
+     * 分页获取参数模板列表
      * @param page
      * @param rows
      * @return
      */
     EUDataGridResult getItemParamList(int page, int rows);
+
+    /**
+     * 删除参数模板
+     * @param ids
+     * @return
+     */
+    TaotaoResult deleteItemParam(Long[] ids) throws Exception;
 }

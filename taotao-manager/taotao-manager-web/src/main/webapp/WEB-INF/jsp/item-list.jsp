@@ -17,7 +17,7 @@
         </tr>
     </thead>
 </table>
-<div id="itemEditWindow" class="easyui-window" title="编辑商品" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/rest/page/item-edit'" style="width:80%;height:80%;padding:10px;">
+<div id="itemEditWindow" class="easyui-window" title="编辑商品" data-options="modal:true,closed:true,iconCls:'icon-save',href:'/item-edit'" style="width:80%;height:80%;padding:10px;">
 </div>
 <script>
 
@@ -31,7 +31,7 @@
     	ids = ids.join(",");
     	return ids;
     }
-    
+
     var toolbar = [{
         text:'新增',
         iconCls:'icon-add',
@@ -51,50 +51,49 @@
         		$.messager.alert('提示','只能选择一个商品!');
         		return ;
         	}
-        	
+
         	$("#itemEditWindow").window({
         		onLoad :function(){
         			//回显数据
         			var data = $("#itemList").datagrid("getSelections")[0];
         			data.priceView = TAOTAO.formatPrice(data.price);
         			$("#itemeEditForm").form("load",data);
-        			
+
         			// 加载商品描述
         			$.getJSON('/rest/item/query/item/desc/'+data.id,function(_data){
         				if(_data.status == 200){
         					//UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
-        					itemEditEditor.html(_data.data.itemDesc);
+        					itemEditEditor.html(_data.data[0].itemDesc);
         				}
         			});
-        			
         			//加载商品规格
-        			$.getJSON('/rest/item/param/item/query/'+data.id,function(_data){
-        				if(_data && _data.status == 200 && _data.data && _data.data.paramData){
+        			$.getJSON('/items/param/item/query/'+data.id,function(_data){
+        				if(_data && _data.status == 200 && _data.data && _data.data[0].paramData){
         					$("#itemeEditForm .params").show();
-        					$("#itemeEditForm [name=itemParams]").val(_data.data.paramData);
-        					$("#itemeEditForm [name=itemParamId]").val(_data.data.id);
-        					
+        					$("#itemeEditForm [name=itemParams]").val(_data.data[0].paramData);
+        					$("#itemeEditForm [name=itemParamId]").val(_data.data[0].id);
+
         					//回显商品规格
-        					 var paramData = JSON.parse(_data.data.paramData);
-        					
+        					 var paramData = JSON.parse(_data.data[0].paramData);
+
         					 var html = "<ul>";
         					 for(var i in paramData){
         						 var pd = paramData[i];
         						 html+="<li><table>";
         						 html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
-        						 
+
         						 for(var j in pd.params){
         							 var ps = pd.params[j];
         							 html+="<tr><td class=\"param\"><span>"+ps.k+"</span>: </td><td><input autocomplete=\"off\" type=\"text\" value='"+ps.v+"'/></td></tr>";
         						 }
-        						 
+
         						 html+="</li></table>";
         					 }
         					 html+= "</ul>";
         					 $("#itemeEditForm .params td").eq(1).html(html);
         				}
         			});
-        			
+
         			TAOTAO.init({
         				"pics" : data.image,
         				"cid" : data.cid,
@@ -117,7 +116,7 @@
         	$.messager.confirm('确认','确定删除ID为 '+ids+' 的商品吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/delete",params, function(data){
+                	$.post("/item/delete",params, function(data){
             			if(data.status == 200){
             				$.messager.alert('提示','删除商品成功!',undefined,function(){
             					$("#itemList").datagrid("reload");
@@ -139,7 +138,7 @@
         	$.messager.confirm('确认','确定下架ID为 '+ids+' 的商品吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/instock",params, function(data){
+                	$.post("/item/instock",params, function(data){
             			if(data.status == 200){
             				$.messager.alert('提示','下架商品成功!',undefined,function(){
             					$("#itemList").datagrid("reload");
@@ -161,7 +160,7 @@
         	$.messager.confirm('确认','确定上架ID为 '+ids+' 的商品吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/reshelf",params, function(data){
+                	$.post("/item/reshelf",params, function(data){
             			if(data.status == 200){
             				$.messager.alert('提示','上架商品成功!',undefined,function(){
             					$("#itemList").datagrid("reload");

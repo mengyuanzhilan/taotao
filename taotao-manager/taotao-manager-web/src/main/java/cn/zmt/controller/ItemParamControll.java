@@ -32,6 +32,12 @@ public class ItemParamControll {
         return itemParamService.getTtemParamByCid(itemCatId);
     }
 
+    /**
+     * 保存参数模板
+     * @param cid
+     * @param paramData
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/save/{cid}")
     public TaotaoResult insertItemParam(@PathVariable long cid,String paramData){
@@ -43,9 +49,26 @@ public class ItemParamControll {
         return itemParamService.insertItemParam(itemParam);
     }
 
+    /**
+     * 分页获取参数模板
+     * @param page
+     * @param rows
+     * @return
+     */
     @RequestMapping("/list")
     @ResponseBody
     public EUDataGridResult getItemParamlist(Integer page,Integer rows){
         return itemParamService.getItemParamList(page,rows);
+    }
+
+    /**
+     * 删除参数模板列表
+     * @param ids
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/delete")
+    public TaotaoResult deleteItemParam(Long[] ids)throws Exception{
+        return itemParamService.deleteItemParam(ids);
     }
 }
