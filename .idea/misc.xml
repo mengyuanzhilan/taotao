@@ -3,13 +3,16 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/common-utils" />
     <file type="web" url="file://$PROJECT_DIR$/taotao-manager" />
+    <file type="web" url="file://$PROJECT_DIR$/taotao-portal" />
+    <file type="web" url="file://$PROJECT_DIR$/taotao-rest" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/common-parent/pom.xml" />
         <option value="$PROJECT_DIR$/common-utils/pom.xml" />
         <option value="$PROJECT_DIR$/taotao-manager/pom.xml" />
+        <option value="$PROJECT_DIR$/taotao-rest/pom.xml" />
+        <option value="$PROJECT_DIR$/taotao-portal/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
