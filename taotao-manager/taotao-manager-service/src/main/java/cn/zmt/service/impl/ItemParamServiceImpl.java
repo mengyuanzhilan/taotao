@@ -1,10 +1,8 @@
 package cn.zmt.service.impl;
 
-import cn.zmt.EUDataGridResult;
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.EUDataGridResult;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.mapper.TbItemParamMapper;
-import cn.zmt.pojo.TbItem;
-import cn.zmt.pojo.TbItemExample;
 import cn.zmt.pojo.TbItemParam;
 import cn.zmt.pojo.TbItemParamExample;
 import cn.zmt.service.ItemParamService;

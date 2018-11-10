@@ -1,7 +1,7 @@
 package cn.zmt.service;
 
-import cn.zmt.EUDataGridResult;
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.EUDataGridResult;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.pojo.TbItem;
 import org.springframework.stereotype.Service;
 

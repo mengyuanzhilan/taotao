@@ -1,7 +1,7 @@
 package cn.zmt.service.impl;
 
-import cn.zmt.JsonUtils;
-import cn.zmt.TaotaoResult;
+import cn.zmt.utils.JsonUtils;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.mapper.TbItemParamItemMapper;
 import cn.zmt.pojo.TbItemParamItem;
 import cn.zmt.pojo.TbItemParamItemExample;

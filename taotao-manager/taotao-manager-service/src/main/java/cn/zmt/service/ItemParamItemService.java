@@ -1,6 +1,6 @@
 package cn.zmt.service;
 
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.TaotaoResult;
 
 /**
  * @author zmt

@@ -1,7 +1,7 @@
 package cn.zmt.service.impl;
 
-import cn.zmt.FtpUtil;
-import cn.zmt.IDUtils;
+import cn.zmt.utils.FtpUtil;
+import cn.zmt.utils.IDUtils;
 import cn.zmt.service.PictureService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;

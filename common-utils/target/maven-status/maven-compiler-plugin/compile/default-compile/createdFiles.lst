@@ -1,5 +1,6 @@
-cn\zmt\IDUtils.class
-cn\zmt\EUDataGridResult.class
-cn\zmt\FtpUtil.class
-cn\zmt\JsonUtils.class
-cn\zmt\TaotaoResult.class
+cn\zmt\utils\JsonUtils.class
+cn\zmt\utils\IDUtils.class
+cn\zmt\pojo\EUDataGridResult.class
+cn\zmt\pojo\EUTreeNode.class
+cn\zmt\utils\FtpUtil.class
+cn\zmt\pojo\TaotaoResult.class

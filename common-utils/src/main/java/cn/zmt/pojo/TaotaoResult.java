@@ -1,4 +1,4 @@
-package cn.zmt;
+package cn.zmt.pojo;
 
 import java.util.List;
 

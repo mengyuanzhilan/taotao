@@ -1,7 +1,7 @@
 package cn.zmt.controller;
 
-import cn.zmt.EUDataGridResult;
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.EUDataGridResult;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.pojo.TbItemParam;
 import cn.zmt.service.ItemParamService;
 import org.springframework.beans.factory.annotation.Autowired;

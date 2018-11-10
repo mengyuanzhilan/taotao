@@ -1,8 +1,8 @@
 package cn.zmt.service.impl;
 
-import cn.zmt.EUDataGridResult;
-import cn.zmt.IDUtils;
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.EUDataGridResult;
+import cn.zmt.utils.IDUtils;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.mapper.TbItemDescMapper;
 import cn.zmt.mapper.TbItemMapper;
 import cn.zmt.mapper.TbItemParamItemMapper;

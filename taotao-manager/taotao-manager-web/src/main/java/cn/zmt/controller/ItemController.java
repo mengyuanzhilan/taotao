@@ -1,7 +1,7 @@
 package cn.zmt.controller;
 
-import cn.zmt.EUDataGridResult;
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.EUDataGridResult;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.pojo.TbItem;
 import cn.zmt.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.Map;
 
 /**
  * 商品

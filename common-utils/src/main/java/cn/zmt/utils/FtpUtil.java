@@ -1,4 +1,4 @@
-package cn.zmt;
+package cn.zmt.utils;
 
 
 import org.apache.commons.net.ftp.FTPClient;

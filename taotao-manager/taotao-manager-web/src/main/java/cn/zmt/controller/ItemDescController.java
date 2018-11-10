@@ -1,6 +1,6 @@
 package cn.zmt.controller;
 
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.service.ItemDescService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

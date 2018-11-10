@@ -1,6 +1,6 @@
 package cn.zmt.service.impl;
 
-import cn.zmt.TaotaoResult;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.mapper.TbItemDescMapper;
 import cn.zmt.pojo.TbItemDesc;
 import cn.zmt.pojo.TbItemDescExample;

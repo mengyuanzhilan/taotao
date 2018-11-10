@@ -5,3 +5,4 @@ cn\zmt\controller\ItemParamControll.class
 cn\zmt\controller\ItemParamItemController.class
 cn\zmt\controller\ItemCatController.class
 cn\zmt\controller\ItemDescController.class
+cn\zmt\controller\ContentCategoryController.class

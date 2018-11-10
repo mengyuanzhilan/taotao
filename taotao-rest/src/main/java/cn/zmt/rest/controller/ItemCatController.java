@@ -1,11 +1,10 @@
 package cn.zmt.rest.controller;
 
-import cn.zmt.JsonUtils;
+import cn.zmt.utils.JsonUtils;
 import cn.zmt.rest.pojo.CatResult;
 import cn.zmt.rest.service.ItemCatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

@@ -1,4 +1,4 @@
-package cn.zmt;
+package cn.zmt.utils;
 
 import java.util.Random;
 

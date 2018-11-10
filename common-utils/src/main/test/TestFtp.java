@@ -1,7 +1,6 @@
 
 
-import cn.zmt.FtpUtil;
-import org.apache.commons.net.ftp.FTPClient;
+import cn.zmt.utils.FtpUtil;
 import org.junit.Test;
 
 import java.io.*;

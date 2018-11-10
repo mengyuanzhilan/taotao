@@ -1,4 +1,4 @@
-package cn.zmt;
+package cn.zmt.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
