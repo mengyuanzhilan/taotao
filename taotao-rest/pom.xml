@@ -77,6 +77,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 自动生成get set -->
+        <!-- https://mvnrepository.com/artifact/io.freefair.gradle/lombok-plugin -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <!-- 配置插件 -->
