@@ -6,9 +6,11 @@ cn\zmt\service\ItemService.class
 cn\zmt\service\impl\ItemParamItemServiceImpl.class
 cn\zmt\service\impl\ItemDescServiceImpl.class
 cn\zmt\service\impl\PictureServiceImpl.class
+cn\zmt\service\impl\ContentServiceImpl.class
 cn\zmt\service\PictureService.class
 cn\zmt\service\impl\ContentCategoryServiceImpl.class
 cn\zmt\service\impl\ItemParamServiceImpl.class
 cn\zmt\service\ItemDescService.class
 cn\zmt\service\ItemCatService.class
+cn\zmt\service\ContentService.class
 cn\zmt\service\impl\ItemCatServiceImpl.class

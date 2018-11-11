@@ -8,5 +8,9 @@ import cn.zmt.rest.pojo.CatResult;
  * @creation time 2018/11/10 - 8:46
  */
 public interface ItemCatService {
+    /**
+     * 查询所有节点信息
+     * @return
+     */
     CatResult getitemCatList();
 }

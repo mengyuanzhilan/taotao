@@ -87,7 +87,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from tb_content_category
     where id = #{id,jdbcType=BIGINT}
@@ -103,6 +103,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.zmt.pojo.TbContentCategory">
+    /* 获取事物中最后一个新增的id */
+    <selectKey keyProperty="id" resultType="long" order="AFTER">
+      select LAST_INSERT_ID()
+    </selectKey>
+
     insert into tb_content_category (id, parent_id, name, 
       status, sort_order, is_parent, 
       created, updated)
@@ -111,7 +116,12 @@
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.zmt.pojo.TbContentCategory">
-    insert into tb_content_category
+      /* 获取事物中最后一个新增的id */
+      <selectKey keyProperty="id" resultType="long" order="AFTER">
+          select LAST_INSERT_ID()
+      </selectKey>
+
+      insert into tb_content_category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,

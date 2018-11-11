@@ -1,6 +1,7 @@
 package cn.zmt.controller;
 
 import cn.zmt.pojo.EUTreeNode;
+import cn.zmt.pojo.TaotaoResult;
 import cn.zmt.service.ContentCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,5 +30,40 @@ public class ContentCategoryController {
     @ResponseBody
     public List<EUTreeNode> getContentCatList(@RequestParam(value = "id",defaultValue = "0") Long parentId){
         return contentCategoryService.getCategoryList(parentId);
+    }
+
+    /**
+     * 添加
+     * @param parentId
+     * @param name
+     * @return
+     */
+    @RequestMapping("/create")
+    public TaotaoResult createContentCategory(Long parentId,String name){
+        return contentCategoryService.insertContentCategory(parentId,name);
+    }
+
+    /**
+     * 删除
+     * @param parentId
+     * @param id
+     * @return
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public TaotaoResult deleteContentCategory(@RequestParam(value = "id",defaultValue = "0") Long parentId,Long id){
+        return contentCategoryService.deleteContentCategory(parentId,id);
+    }
+
+    /**
+     * 修改节点名
+     * @param id
+     * @param name
+     * @return
+     */
+    @RequestMapping("/update")
+    @ResponseBody
+    public TaotaoResult updateContentCategoryName(Long id,String name){
+        return contentCategoryService.updateContentCategoryName(id,name);
     }
 }
