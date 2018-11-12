@@ -3,9 +3,11 @@ package cn.zmt.service.impl;
 import cn.zmt.mapper.TbContentMapper;
 import cn.zmt.pojo.*;
 import cn.zmt.service.ContentService;
+import cn.zmt.utils.HttpClientUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,6 +21,10 @@ import java.util.List;
 public class ContentServiceImpl implements ContentService {
     @Autowired
     TbContentMapper contentMapper;
+    @Value("${REST_BASE_URL}")
+    private String REST_BASE_URL;
+    @Value("${REST_CONTENT_SYNC_URL}")
+    private String REST_CONTENT_SYNC_URL;
     /**
      * 根据categoryId分页查询
      * @param page
@@ -56,6 +62,12 @@ public class ContentServiceImpl implements ContentService {
         content.setCreated(new Date());
         content.setUpdated(new Date());
         contentMapper.insert(content);
+        //添加缓冲同步逻辑
+        try {
+            HttpClientUtil.doGet(REST_BASE_URL+REST_CONTENT_SYNC_URL+content.getCategoryId());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return TaotaoResult.ok();
     }
 
@@ -69,6 +81,12 @@ public class ContentServiceImpl implements ContentService {
         //补全pojo
         content.setUpdated(new Date());
         contentMapper.updateByPrimaryKeyWithBLOBs(content);
+        //添加缓冲同步逻辑
+        try {
+            HttpClientUtil.doGet(REST_BASE_URL+REST_CONTENT_SYNC_URL+content.getCategoryId());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return TaotaoResult.ok();
     }
 
@@ -81,6 +99,12 @@ public class ContentServiceImpl implements ContentService {
     public TaotaoResult deleteContent(long[] ids) {
         for (long id : ids) {
             contentMapper.deleteByPrimaryKey(id);
+        }
+        //添加缓冲同步逻辑
+        try {
+            HttpClientUtil.doGet(REST_BASE_URL+REST_CONTENT_SYNC_URL+ids[ids.length-1]);
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return TaotaoResult.ok();
     }

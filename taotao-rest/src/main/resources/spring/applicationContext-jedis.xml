@@ -29,13 +29,15 @@
 		<property name="testWhileIdle" value="true" />
 		<!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true -->
 		<property name="blockWhenExhausted" value="false" />
+
 	</bean>	
 	<!-- jedis客户端单机版 -->
 	<bean id="redisClient" class="redis.clients.jedis.JedisPool">
-		<constructor-arg name="host" value="47.107.135.170"></constructor-arg>
-		<constructor-arg name="port" value="6379"></constructor-arg>
-		<constructor-arg name="password" value="mengyuan"></constructor-arg>
 		<constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
+		<constructor-arg name="host" value="47.107.135.170"></constructor-arg>
+		<constructor-arg name="password" value="mengyuan"></constructor-arg>
+		<constructor-arg name="timeout" value="1500"></constructor-arg>
+		<constructor-arg name="port" value="6379"></constructor-arg>
 	</bean>
 	<bean id="jedisClient" class="cn.zmt.rest.dao.impl.JedisClientSingle"/>
 	

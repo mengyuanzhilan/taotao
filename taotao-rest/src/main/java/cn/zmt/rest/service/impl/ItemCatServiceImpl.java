@@ -3,10 +3,14 @@ package cn.zmt.rest.service.impl;
 import cn.zmt.mapper.TbItemCatMapper;
 import cn.zmt.pojo.TbItemCat;
 import cn.zmt.pojo.TbItemCatExample;
+import cn.zmt.rest.dao.JedisClient;
 import cn.zmt.rest.pojo.CatNode;
 import cn.zmt.rest.pojo.CatResult;
 import cn.zmt.rest.service.ItemCatService;
+import cn.zmt.utils.JsonUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +25,10 @@ import java.util.List;
 public class ItemCatServiceImpl implements ItemCatService {
     @Autowired
     private TbItemCatMapper itemCatMapper;
-
+    @Value("${REDIS_ITEM_CAT}")
+    private String REDIS_ITEM_CAT;
+    @Autowired
+    private JedisClient jedisClient;
     /**
      * 获取商品分类列表
      * @return
@@ -40,6 +47,16 @@ public class ItemCatServiceImpl implements ItemCatService {
      * @return
      */
     private List<?> getCatList(long parentId){
+        //从缓冲中取出内容
+        try {
+            String hget = jedisClient.hget(REDIS_ITEM_CAT, parentId + "");
+            if(!StringUtils.isBlank(hget)){
+                return JsonUtils.jsonToList(hget,Object.class);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         //创建查询条件
         TbItemCatExample example = new TbItemCatExample();
         TbItemCatExample.Criteria criteria = example.createCriteria();
@@ -72,6 +89,15 @@ public class ItemCatServiceImpl implements ItemCatService {
                 //如果是叶子节点
                 resultList.add("/products/"+tbItemCat.getId()+".html|" + tbItemCat.getName());
             }
+        }
+        //向缓冲添加内容
+        try {
+            //把list转换成字符串
+            String resultString = JsonUtils.objectToJson(resultList);
+            //存入Redis
+            jedisClient.hset(REDIS_ITEM_CAT,parentId+"",resultString);
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return resultList;
     }
