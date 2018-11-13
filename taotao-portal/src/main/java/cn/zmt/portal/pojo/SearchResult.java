@@ -1,4 +1,4 @@
-package cn.zmt.search.pojo;
+package cn.zmt.portal.pojo;
 
 import lombok.Getter;
 import lombok.Setter;

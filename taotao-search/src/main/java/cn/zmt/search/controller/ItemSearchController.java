@@ -26,7 +26,7 @@ public class ItemSearchController {
     @ResponseBody
     public TaotaoResult search(@RequestParam("q")String queryString,
                                @RequestParam(defaultValue="1")Integer page,
-                               @RequestParam(defaultValue="60")Integer rows){
+                               @RequestParam(defaultValue="30")Integer rows){
         //判断查询条件不能为空
         if(StringUtils.isBlank(queryString)){
             return TaotaoResult.build(400,"查询条件不能为空");
@@ -35,6 +35,7 @@ public class ItemSearchController {
         try {
             //解决中文乱码
             queryString = new String(queryString.getBytes("iso8859-1"), "utf-8");
+            System.out.println("搜索值："+queryString);
             searchResult = searchService.search(queryString, page, rows);
         } catch (Exception e) {
             e.printStackTrace();

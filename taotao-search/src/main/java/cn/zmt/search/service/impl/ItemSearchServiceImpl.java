@@ -44,7 +44,7 @@ public class ItemSearchServiceImpl implements ItemSearchService {
         if (recordCount % rows > 0) {
             pageCount++;
         }
-        searchResult.setPageCont(pageCount);
+        searchResult.setPageCount(pageCount);
         searchResult.setCurPage(page);
 
         return searchResult;
