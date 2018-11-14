@@ -5,4 +5,5 @@ cn\zmt\pojo\EUTreeNode.class
 cn\zmt\utils\FtpUtil.class
 cn\zmt\utils\HttpClientUtil.class
 cn\zmt\utils\IDUtils.class
+cn\zmt\utils\CookieUtils.class
 cn\zmt\pojo\TaotaoResult.class

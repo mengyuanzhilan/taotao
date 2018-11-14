@@ -53,6 +53,7 @@ public class PictureServiceImpl implements PictureService {
             System.out.println(IMAGE_BASE_URL + imagePath + "/" + newName);
             return resultMap;
         }catch (Exception e){
+            e.printStackTrace();
             resultMap.put("error", 1);
             resultMap.put("message", "文件上传发生异常！");
             System.out.println("文件上传发生异常！");

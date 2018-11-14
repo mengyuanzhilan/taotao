@@ -2,6 +2,7 @@ package cn.zmt.portal.controller;
 
 import cn.zmt.portal.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,8 +51,9 @@ public class ItemController {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/item/param/{itemId}")
+    @RequestMapping(value="/item/param/{itemId}",produces=MediaType.TEXT_HTML_VALUE+";charset=utf-8")
     public Object getItemParamItem(@PathVariable("itemId") Long itemId){
+        System.out.println("itemID:"+itemId);
         return itemService.getItemParamItemById(itemId);
     }
 }
