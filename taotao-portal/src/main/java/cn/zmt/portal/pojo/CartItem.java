@@ -2,6 +2,7 @@ package cn.zmt.portal.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author 赵铭涛
@@ -9,7 +10,8 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class CatrItem {
+@ToString
+public class CartItem {
     private long id;
     private String title;
     private long price;
